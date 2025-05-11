@@ -1,0 +1,16 @@
+{
+  "name": "com.darksun.enum-length-generator",
+  "description": "A source generator solution to generate enum length.",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "displayName": "EnumLengthGenerator",
+  "dependencies": {
+  },
+  "keywords": [
+    "Enum",
+	"enum"
+  ],
+  "author": {
+    "name": "hoangtongvu"
+  }
+}
