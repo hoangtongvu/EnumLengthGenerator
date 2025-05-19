@@ -59,7 +59,7 @@ namespace {enumNamespace}
 {{
     public static class {className}
     {{
-        public static readonly {enumBaseType} Value = {enumLength};
+        public const {enumBaseType} Value = {enumLength};
     }}
 }}
 ";
