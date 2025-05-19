@@ -41,7 +41,7 @@ namespace Core.Harvest
 {
     public static class HarvesteeType_Length
     {
-        public static readonly byte Value = 3;
+        public const byte Value = 3;
     }
 }
 ```
