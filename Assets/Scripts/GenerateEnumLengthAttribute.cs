@@ -1,6 +1,9 @@
 using System;
 
-[AttributeUsage(AttributeTargets.Enum, AllowMultiple = false)]
-public class GenerateEnumLengthAttribute : Attribute
+namespace EnumLengthGenerator
 {
+    [AttributeUsage(AttributeTargets.Enum, AllowMultiple = false)]
+    public class GenerateEnumLengthAttribute : Attribute
+    {
+    }
 }
