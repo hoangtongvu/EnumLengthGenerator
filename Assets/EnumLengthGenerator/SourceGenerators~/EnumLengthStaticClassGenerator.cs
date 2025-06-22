@@ -1,13 +1,10 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Text;
 
 namespace EnumLengthStaticClassGenerator
 {
-    public readonly record struct EnumInfo(string Name, string Namespace, string BaseType, int MemberCount);
-
     [Generator]
     public class EnumLengthStaticClassGenerator : IIncrementalGenerator
     {
@@ -29,8 +26,7 @@ namespace EnumLengthStaticClassGenerator
                     transform: static (context, _) => GetEnumToGenerate(context));
 
             // Register the source output
-            context.RegisterSourceOutput(enumProvider.Collect(),
-                static (spc, source) => Execute(source, spc));
+            context.RegisterSourceOutput(enumProvider, GenerateEnumLengthClass);
 
         }
 
@@ -80,26 +76,9 @@ namespace EnumLengthStaticClassGenerator
             return baseTypeSyntax?.ToString();
         }
 
-        private static void Execute(
-            in ImmutableArray<EnumInfo> enumInfos
-            , in SourceProductionContext context)
-        {
-            if (enumInfos.IsDefaultOrEmpty)
-                return;
-
-            // Generate source for each enum
-            int count = enumInfos.Length;
-
-            for (int i = 0; i < count; i++)
-            {
-                var enumInfo = enumInfos[i];
-                var source = GenerateEnumLengthClass(enumInfo);
-                context.AddSource($"{enumInfo.Name}_Length.g.cs", source);
-            }
-
-        }
-
-        private static string GenerateEnumLengthClass(in EnumInfo enumInfo)
+        private static void GenerateEnumLengthClass(
+            SourceProductionContext context
+            , EnumInfo enumInfo)
         {
             var sb = new StringBuilder();
 
@@ -128,7 +107,8 @@ namespace EnumLengthStaticClassGenerator
                 sb.AppendLine("}");
             }
 
-            return sb.ToString();
+            context.AddSource($"{enumInfo.Name}_Length.g.cs", sb.ToString());
+
         }
 
     }
