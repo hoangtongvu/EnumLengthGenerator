@@ -28,12 +28,9 @@ namespace EnumLengthStaticClassGenerator
                     predicate: static (syntaxNode, _) => IsEnumWithGenerateEnumLengthAttribute(syntaxNode),
                     transform: static (context, _) => GetEnumToGenerate(context));
 
-            // Combine the compilation and enum data
-            var compilationAndEnums = context.CompilationProvider.Combine(enumProvider.Collect());
-
             // Register the source output
-            context.RegisterSourceOutput(compilationAndEnums,
-                static (spc, source) => Execute(source.Right, spc));
+            context.RegisterSourceOutput(enumProvider.Collect(),
+                static (spc, source) => Execute(source, spc));
 
         }
 
