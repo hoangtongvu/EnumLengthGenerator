@@ -1,7 +1,7 @@
 {
   "name": "com.darksun.enum-length-generator",
   "description": "A source generator solution to generate enum length.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "unity": "2022.3",
   "displayName": "Enum Length Generator",
   "dependencies": {
