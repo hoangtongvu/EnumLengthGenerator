@@ -17,7 +17,7 @@ To install, paste the following URL into Unity's **Package Manager**:
 4. Enter:
 
 ```bash
-https://github.com/hoangtongvu/EnumLengthGenerator.git?path=/EnumLengthGenerator
+https://github.com/hoangtongvu/EnumLengthGenerator.git?path=/Assets/EnumLengthGenerator
 ```
 
 5. Make sure all of the code that's going to use **EnumLengthGenerator** is under an .asmdef and references the `EnumLengthGenerator.asmdef`
